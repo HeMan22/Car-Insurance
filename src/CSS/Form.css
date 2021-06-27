@@ -1,0 +1,35 @@
+body,
+html {
+  background-color: #ebecf0;
+}
+.form-main {
+  width: 30%;
+  margin-left: 30%;
+}
+body,
+p,
+input,
+select,
+textarea,
+button {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: -0.2px;
+  font-size: 1.2em;
+}
+
+div,
+p {
+  color: #9a9da8 !important;
+  text-shadow: 1px 1px 1px #fff !important;
+}
+
+label {
+  display: block;
+  margin-bottom: 1.5em;
+  width: 100%;
+}
+
+.section__intro {
+  font-size: 1.5em;
+}
+

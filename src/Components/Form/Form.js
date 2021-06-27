@@ -1,13 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../CSS/Form.css";
 
 const Form = () => {
+  const [salutation, setSalutation] = useState();
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [contact, setContact] = useState();
+  const [email, setEmail] = useState();
+  const [address1, setAddress1] = useState();
+  const [address2, setAddress2] = useState();
+  const [city, setCity] = useState();
+  const [pinCode, setPinCode] = useState();
+  const [vehicleType, setVehicleType] = useState();
+  const [engineSize, setEngineSize] = useState();
+  const [driversCount, setDriversCount] = useState();
+  const [isCommercial, setIsCommercial] = useState();
+  const [canUseOutSide, setCanUserOutSide] = useState();
+  const [currentRange, setCurrentRange] = useState(0);
+  const [registeredDate, setRegisteredDate] = useState();
+
   return (
     <React.Fragment>
       <div className="form-main">
         <section className="name-section">
           <span className="section__intro">Personnel Information</span>
-          <select class="form-select" aria-label="Prefix">
+          <select
+            class="form-select"
+            aria-label="Prefix"
+            value={salutation}
+            onChange={(e) => {
+              setSalutation(e.target.value);
+            }}
+          >
             <option selected disabled>
               Salutation
             </option>
@@ -17,13 +41,18 @@ const Form = () => {
           </select>
           <div class="mb-3">
             <label for="formGroupExampleInput" class="form-label">
-              First name
+              First Name
             </label>
             <input
               type="text"
               class="form-control"
               id="formGroupExampleInput"
+              aria-label="First Name"
               placeholder="First Name"
+              value={firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
             />
           </div>
           <div class="mb-3">
@@ -35,6 +64,9 @@ const Form = () => {
               class="form-control"
               id="formGroupExampleInput2"
               placeholder="Last Name"
+              aria-label="Last Name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -42,10 +74,13 @@ const Form = () => {
               Contact No.
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               id="formGroupExampleInput2"
               placeholder="Contact No."
+              aria-label="Contact"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
             />
           </div>
           <div class="mb-3">
@@ -57,6 +92,8 @@ const Form = () => {
               class="form-control"
               id="formGroupExampleInput2"
               placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <button type="button" class="btn btn-secondary">
@@ -73,8 +110,8 @@ const Form = () => {
               placeholder="Address Line 1"
               required
               rows="2"
-              //   name={addressLine1}
-              // onChange={(e) => setAddrL1(e.target.value)}
+              name={address1}
+              onChange={(e) => setAddress1(e.target.value)}
             />
           </div>
           <div className="input__card">
@@ -84,8 +121,8 @@ const Form = () => {
               placeholder="Address Line 2"
               required
               rows="2"
-              //   name={addressLine1}
-              // onChange={(e) => setAddrL1(e.target.value)}
+              name={address2}
+              onChange={(e) => setAddress2(e.target.value)}
             />
           </div>
           <div>
@@ -94,16 +131,16 @@ const Form = () => {
               class="form-control"
               placeholder="City"
               required
-              //   name={city}
-              //   onChange={(e) => setCity(e.target.value)}
+              name={city}
+              onChange={(e) => setCity(e.target.value)}
             />
             <input
               type="text"
               class="form-control"
               placeholder="PostCode/Zip Code"
               required
-              //   name={pincode}
-              //   onChange={(e) => setPinCode(e.target.value)}
+              name={pinCode}
+              onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
         </section>
@@ -112,7 +149,11 @@ const Form = () => {
           <span className="section__intro">Vehicle Details</span>
           <div className="vehicle-type">
             <label>Vehicle Type</label>
-            <select className="form-select">
+            <select
+              className="form-select"
+              value={vehicleType}
+              onChange={(e) => setVehicleType(e.target.value)}
+            >
               <option>Select a Vehicle Type</option>
               <option value="Cabriolet ">Cabriolet</option>
               <option value="Coupe">Coupe</option>
@@ -121,7 +162,11 @@ const Form = () => {
               <option value="Others">Others</option>
             </select>
             <label>Engine Size</label>
-            <select className="form-select">
+            <select
+              className="form-select"
+              value={engineSize}
+              onChange={(e) => setEngineSize(e.target.value)}
+            >
               <option>Select Engine Size</option>
               <option value="1000">1000</option>
               <option value="1600">1600</option>
@@ -131,7 +176,11 @@ const Form = () => {
               <option value="Others">Others</option>
             </select>
             <label>Additional Drivers</label>
-            <select className="form-select">
+            <select
+              className="form-select"
+              value={driversCount}
+              onChange={(e) => setDriversCount(e.target.value)}
+            >
               <option>Additional Drivers using the Car</option>
               <option value="1000">1</option>
               <option value="1600">2</option>
@@ -146,6 +195,8 @@ const Form = () => {
                 type="radio"
                 name="commercialPurpose"
                 id="commercialPurposeYes"
+                value={isCommercial}
+                onChange={(e) => setIsCommercial(e.target.value)}
               />
               <label className="form-check-label" for="commercialPurposeYes">
                 Yes
@@ -172,6 +223,8 @@ const Form = () => {
                 type="radio"
                 name="outsideStates"
                 id="outsideStateYes"
+                value={canUseOutSide}
+                onChange={(e) => setCanUserOutSide(e.target.value)}
               />
               <label className="form-check-label" for="outsideStateYes">
                 Yes
@@ -188,6 +241,28 @@ const Form = () => {
               <label className="form-check-label" for="outsideStateNo">
                 No
               </label>
+            </div>
+            <div className="registered__date">
+              <label>Registered Date</label>
+              <input
+                type="date"
+                className="form-control"
+                value={registeredDate}
+                onChange={(e) => setRegisteredDate(e.target.value)}
+              />
+            </div>
+            <div className="curr__Range">
+              <label>Current Range(0-50000)</label>
+              <span> {currentRange}</span>
+              <input
+                type="range"
+                className="form-range"
+                step="1000"
+                min="0"
+                max="50000"
+                value={currentRange}
+                onChange={(e) => setCurrentRange(e.target.value)}
+              />
             </div>
           </div>
         </section>

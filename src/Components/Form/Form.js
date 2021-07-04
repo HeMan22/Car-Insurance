@@ -2,26 +2,26 @@ import React, { useState } from "react";
 import "../../CSS/Form.css";
 
 const Form = () => {
-  const [salutation, setSalutation] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [contact, setContact] = useState();
-  const [email, setEmail] = useState();
-  const [address1, setAddress1] = useState();
-  const [address2, setAddress2] = useState();
-  const [city, setCity] = useState();
-  const [pinCode, setPinCode] = useState();
-  const [vehicleType, setVehicleType] = useState();
-  const [engineSize, setEngineSize] = useState();
-  const [driversCount, setDriversCount] = useState();
-  const [isCommercial, setIsCommercial] = useState();
-  const [canUseOutSide, setCanUserOutSide] = useState();
+  const [salutation, setSalutation] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [contact, setContact] = useState("");
+  const [email, setEmail] = useState("");
+  const [address1, setAddress1] = useState("");
+  const [address2, setAddress2] = useState("");
+  const [city, setCity] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  const [vehicleType, setVehicleType] = useState("");
+  const [engineSize, setEngineSize] = useState("");
+  const [driversCount, setDriversCount] = useState("");
+  const [isCommercial, setIsCommercial] = useState("");
+  const [canUseOutSide, setCanUserOutSide] = useState("");
   const [currentRange, setCurrentRange] = useState(0);
-  const [registeredDate, setRegisteredDate] = useState();
+  const [registeredDate, setRegisteredDate] = useState("");
 
   return (
     <React.Fragment>
-      <div className="form-main">
+      <div className="form-main form-slide">
         <section className="name-section">
           <span className="section__intro">Personnel Information</span>
           <select
@@ -101,7 +101,7 @@ const Form = () => {
           </button>
         </section>
 
-        <section className="owner-address">
+        <section className="owner-address form-slide">
           <span className="section__intro">Address Details</span>
           <div className="input__card">
             <textarea
@@ -143,9 +143,12 @@ const Form = () => {
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
+          <button type="button" class="btn btn-secondary">
+            Next
+          </button>
         </section>
 
-        <section className="owner-address">
+        <section className="owner-vehicle form-slide">
           <span className="section__intro">Vehicle Details</span>
           <div className="vehicle-type">
             <label>Vehicle Type</label>

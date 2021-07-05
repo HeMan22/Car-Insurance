@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Form.css";
 
 const Form = () => {
@@ -19,33 +19,81 @@ const Form = () => {
   const [currentRange, setCurrentRange] = useState(0);
   const [registeredDate, setRegisteredDate] = useState("");
 
+  let slide1 = useRef();
+  let slide2 = useRef(null);
+  let slide3 = useRef(null);
+
+  console.log(slide1.current);
+  let slideIndex = 1;
+
+  // Next/previous controls
+  let plusSlides = (e) => {
+    showSlides((slideIndex += e));
+    console.log("next button pressed");
+  };
+
+  var showSlides = (n) => {
+    var i;
+    //var slides = document.getElementsByClassName("form-slide");
+    if (n > 3) {
+      slideIndex = 1;
+    }
+
+    console.log(slide1.current);
+
+    // if (n === 1) {
+    //   slide1.current.style.display = "block";
+    //   slide2.current.style.display = "none";
+    //   slide3.current.style.display = "none";
+    // }
+    if (n === 2) {
+      slide2.current.style.display = "block";
+      slide1.current.style.display = "none";
+      slide3.current.style.display = "none";
+    }
+
+    if (n === 3) {
+      slide3.current.style.display = "block";
+      slide1.current.style.display = "none";
+      slide2.current.style.display = "none";
+    }
+  };
+
+  // useEffect(() => {
+  //   showSlides(slideIndex);
+  // }, []);
+
   return (
     <React.Fragment>
-      <div className="form-main form-slide">
-        <section className="name-section">
+      <div className="form-main">
+        <section
+          style={{ display: "block" }}
+          className="name-section form-slide "
+          ref={slide1}
+        >
           <span className="section__intro">Personnel Information</span>
           <select
-            class="form-select"
+            className="form-select"
             aria-label="Prefix"
             value={salutation}
             onChange={(e) => {
               setSalutation(e.target.value);
             }}
           >
-            <option selected disabled>
+            <option defaultValue disabled>
               Salutation
             </option>
             <option value="1">Mr.</option>
             <option value="2">Miss</option>
             <option value="3">Mrs.</option>
           </select>
-          <div class="mb-3">
-            <label for="formGroupExampleInput" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="formGroupExampleInput" className="form-label">
               First Name
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="formGroupExampleInput"
               aria-label="First Name"
               placeholder="First Name"
@@ -55,13 +103,13 @@ const Form = () => {
               }}
             />
           </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="formGroupExampleInput2" className="form-label">
               Last Name
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="formGroupExampleInput2"
               placeholder="Last Name"
               aria-label="Last Name"
@@ -69,13 +117,13 @@ const Form = () => {
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="formGroupExampleInput2" className="form-label">
               Contact No.
             </label>
             <input
               type="number"
-              class="form-control"
+              className="form-control"
               id="formGroupExampleInput2"
               placeholder="Contact No."
               aria-label="Contact"
@@ -83,30 +131,34 @@ const Form = () => {
               onChange={(e) => setContact(e.target.value)}
             />
           </div>
-          <div class="mb-3">
-            <label for="formGroupExampleInput2" class="form-label">
+          <div className="mb-3">
+            <label htmlFor="formGroupExampleInput2" className="form-label">
               Email
             </label>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               id="formGroupExampleInput2"
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <button type="button" class="btn btn-secondary">
+          <button
+            type="button"
+            className="btn btn-secondary next"
+            onClick={() => plusSlides(1)}
+          >
             Next
           </button>
         </section>
 
-        <section className="owner-address form-slide">
+        <section className="owner-address form-slide" ref={slide2}>
           <span className="section__intro">Address Details</span>
           <div className="input__card">
             <textarea
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Address Line 1"
               required
               rows="2"
@@ -117,7 +169,7 @@ const Form = () => {
           <div className="input__card">
             <textarea
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="Address Line 2"
               required
               rows="2"
@@ -128,7 +180,7 @@ const Form = () => {
           <div>
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="City"
               required
               name={city}
@@ -136,19 +188,23 @@ const Form = () => {
             />
             <input
               type="text"
-              class="form-control"
+              className="form-control"
               placeholder="PostCode/Zip Code"
               required
               name={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
             />
           </div>
-          <button type="button" class="btn btn-secondary">
+          <button
+            type="button"
+            className="btn btn-secondary next"
+            onClick={() => plusSlides(1)}
+          >
             Next
           </button>
         </section>
 
-        <section className="owner-vehicle form-slide">
+        <section className="owner-vehicle form-slide " ref={slide3}>
           <span className="section__intro">Vehicle Details</span>
           <div className="vehicle-type">
             <label>Vehicle Type</label>
@@ -191,7 +247,9 @@ const Form = () => {
               <option value="2500">4</option>
               <option value="3000">&gt;4</option>
             </select>
-            <label>Will the vehicle be used for commercial purposes?</label>
+            <label htmlFor="commercialPurpose">
+              Will the vehicle be used for commercial purposes?
+            </label>
             <div className="form-check">
               <input
                 className="form-check-input"
@@ -201,7 +259,10 @@ const Form = () => {
                 value={isCommercial}
                 onChange={(e) => setIsCommercial(e.target.value)}
               />
-              <label className="form-check-label" for="commercialPurposeYes">
+              <label
+                className="form-check-label"
+                htmlFor="commercialPurposeYes"
+              >
                 Yes
               </label>
             </div>
@@ -211,16 +272,17 @@ const Form = () => {
                 type="radio"
                 name="commercialPurpose"
                 id="commercialPurposeNo"
-                checked
+                defaultChecked
               />
-              <label className="form-check-label" for="commercialPurposeNo">
+              <label className="form-check-label" htmlFor="commercialPurposeNo">
                 No
               </label>
             </div>
-            <label>
+
+            <label htmlFor="outsideStates">
               Will the vehicle be used outside the registered state?
             </label>
-            <div className="form-check">
+            <div className="form-check" name="outsideStates">
               <input
                 className="form-check-input"
                 type="radio"
@@ -229,19 +291,19 @@ const Form = () => {
                 value={canUseOutSide}
                 onChange={(e) => setCanUserOutSide(e.target.value)}
               />
-              <label className="form-check-label" for="outsideStateYes">
+              <label className="form-check-label" htmlFor="outsideStateYes">
                 Yes
               </label>
             </div>
-            <div className="form-check">
+            <div className="form-check" name="outsideStates">
               <input
                 className="form-check-input"
                 type="radio"
                 name="outsideStates"
                 id="outsideStateNo"
-                checked
+                defaultChecked
               />
-              <label className="form-check-label" for="outsideStateNo">
+              <label className="form-check-label" htmlFor="outsideStateNo">
                 No
               </label>
             </div>

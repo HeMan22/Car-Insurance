@@ -39,7 +39,7 @@ const Form = () => {
       slideIndex = 1;
     }
 
-    console.log(slide1.current);
+    console.log(slide1.current.length);
 
     // if (n === 1) {
     //   slide1.current.style.display = "block";

@@ -34,18 +34,13 @@ const Form = () => {
 
   var showSlides = (n) => {
     var i;
-    //var slides = document.getElementsByClassName("form-slide");
+    // var slides = document.getElementsByClassName("form-slide");
     if (n > 3) {
       slideIndex = 1;
     }
 
     console.log(slide1.current.length);
 
-    // if (n === 1) {
-    //   slide1.current.style.display = "block";
-    //   slide2.current.style.display = "none";
-    //   slide3.current.style.display = "none";
-    // }
     if (n === 2) {
       slide2.current.style.display = "block";
       slide1.current.style.display = "none";

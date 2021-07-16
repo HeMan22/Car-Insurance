@@ -19,6 +19,64 @@ const Form = () => {
   const [currentRange, setCurrentRange] = useState(0);
   const [registeredDate, setRegisteredDate] = useState("");
 
+  const VALUE_SELECTION = "*required";
+  const REQUIRED_FIELD = "can't be empty";
+
+  const [fieldErrors, setfieldErrors] = useState({
+    salutation: "",
+    firstName: "",
+    lastName: "",
+    contact: "",
+    error: false,
+    addressLine: "",
+    city: "",
+    pinCode: "",
+    vehicleType: "",
+    engineSize: "",
+    driversCount: "",
+    isCommercial: "",
+    canUseOutSide: "",
+    currentRange: 0,
+    registeredDate: 0,
+  });
+
+  const updateErrorProps = (prop, updatedValue) => {
+    setfieldErrors((prevState) => ({
+      ...prevState,
+      [prop]: updatedValue,
+    }));
+  };
+
+  const validationCheckPersonnelDetails = () => {
+    console.log(
+      "ValidationChecks : ",
+      firstName,
+      ", ",
+      lastName,
+      ", ",
+      contact,
+      ", ",
+      salutation
+    );
+    let flag = true;
+    // if (salutation === "") {
+    //   flag = false;
+    //   updateErrorProps("salutation", VALUE_SELECTION);
+    // }
+    if (firstName === "") {
+      flag = false;
+      updateErrorProps("firstName", REQUIRED_FIELD);
+    }
+    if (lastName === "") {
+      flag = false;
+      updateErrorProps("lastName", REQUIRED_FIELD);
+    }
+
+    if (flag) {
+      plusSlides(1);
+    }
+  };
+
   let slide1 = useRef();
   let slide2 = useRef(null);
   let slide3 = useRef(null);
@@ -38,6 +96,7 @@ const Form = () => {
     if (n > 3) {
       slideIndex = 1;
     }
+    console.log("next value : ", n);
 
     console.log(slide1.current.length);
 
@@ -53,10 +112,6 @@ const Form = () => {
       slide2.current.style.display = "none";
     }
   };
-
-  // useEffect(() => {
-  //   showSlides(slideIndex);
-  // }, []);
 
   return (
     <React.Fragment>
@@ -97,6 +152,12 @@ const Form = () => {
                 setFirstName(e.target.value);
               }}
             />
+            <span
+              className="error_message"
+              hidden={fieldErrors.firstName === ""}
+            >
+              {fieldErrors.firstName}
+            </span>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput2" className="form-label">
@@ -142,7 +203,7 @@ const Form = () => {
           <button
             type="button"
             className="btn btn-secondary next"
-            onClick={() => plusSlides(1)}
+            onClick={() => validationCheckPersonnelDetails()}
           >
             Next
           </button>
@@ -193,7 +254,7 @@ const Form = () => {
           <button
             type="button"
             className="btn btn-secondary next"
-            onClick={() => plusSlides(1)}
+            onClick={() => plusSlides(2)}
           >
             Next
           </button>
@@ -324,17 +385,16 @@ const Form = () => {
                 onChange={(e) => setCurrentRange(e.target.value)}
               />
             </div>
+
+            <div className="form__submission">
+              <button
+              //   onClick={submitForm}
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </section>
-
-        <div className="form__submission">
-          <button
-          //   onClick={submitForm}
-          >
-            Submit
-          </button>
-          <button>Reset</button>
-        </div>
       </div>
     </React.Fragment>
   );

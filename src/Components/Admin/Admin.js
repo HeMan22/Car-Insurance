@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/Admin.css";
+import "../../CSS/Admin.css";
 const Admin = () => {
   const [action, setAction] = useState("search");
   const [driverId, setDriverId] = useState("");

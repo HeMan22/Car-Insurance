@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "../../CSS/Form.css";
 
 const Form = () => {
-  const [salutation, setSalutation] = useState("");
+  const [salutation, setSalutation] = useState("Mr.");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [contact, setContact] = useState("");
@@ -14,8 +14,8 @@ const Form = () => {
   const [vehicleType, setVehicleType] = useState("");
   const [engineSize, setEngineSize] = useState("");
   const [driversCount, setDriversCount] = useState("");
-  const [isCommercial, setIsCommercial] = useState("");
-  const [canUseOutSide, setCanUserOutSide] = useState("");
+  const [isCommercial, setIsCommercial] = useState("No");
+  const [canUseOutSide, setCanUserOutSide] = useState("No");
   const [currentRange, setCurrentRange] = useState(0);
   const [registeredDate, setRegisteredDate] = useState("");
 
@@ -23,12 +23,11 @@ const Form = () => {
   const REQUIRED_FIELD = "can't be empty";
 
   const [fieldErrors, setfieldErrors] = useState({
-    salutation: "",
     firstName: "",
     lastName: "",
     contact: "",
     error: false,
-    addressLine: "",
+    address1: "",
     city: "",
     pinCode: "",
     vehicleType: "",
@@ -59,10 +58,7 @@ const Form = () => {
       salutation
     );
     let flag = true;
-    // if (salutation === "") {
-    //   flag = false;
-    //   updateErrorProps("salutation", VALUE_SELECTION);
-    // }
+
     if (firstName === "") {
       flag = false;
       updateErrorProps("firstName", REQUIRED_FIELD);
@@ -77,11 +73,30 @@ const Form = () => {
     }
   };
 
+  const validationCheckAddressDetails = () => {
+    let flag = true;
+    if (address1 === "") {
+      flag = false;
+      updateErrorProps("address1", REQUIRED_FIELD);
+    }
+    if (pinCode === "") {
+      flag = false;
+      updateErrorProps("pinCode", REQUIRED_FIELD);
+    }
+    if (city === "") {
+      flag = false;
+      updateErrorProps("city", REQUIRED_FIELD);
+    }
+    if (flag) {
+      plusSlides(2);
+    }
+  };
+
   let slide1 = useRef();
   let slide2 = useRef(null);
   let slide3 = useRef(null);
 
-  console.log(slide1.current);
+  // console.log(slide1.current);
   let slideIndex = 1;
 
   // Next/previous controls
@@ -146,7 +161,7 @@ const Form = () => {
               className="form-control"
               id="formGroupExampleInput"
               aria-label="First Name"
-              placeholder="First Name"
+              placeholder="Himanshu"
               value={firstName}
               onChange={(e) => {
                 setFirstName(e.target.value);
@@ -167,11 +182,17 @@ const Form = () => {
               type="text"
               className="form-control"
               id="formGroupExampleInput2"
-              placeholder="Last Name"
+              placeholder="Tripathi"
               aria-label="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
+            <span
+              className="error_message"
+              hidden={fieldErrors.lastName === ""}
+            >
+              {fieldErrors.lastName}
+            </span>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput2" className="form-label">
@@ -181,7 +202,7 @@ const Form = () => {
               type="number"
               className="form-control"
               id="formGroupExampleInput2"
-              placeholder="Contact No."
+              placeholder="xxx-xxx-xxxx"
               aria-label="Contact"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
@@ -195,7 +216,7 @@ const Form = () => {
               type="text"
               className="form-control"
               id="formGroupExampleInput2"
-              placeholder="Email"
+              placeholder="abc@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -243,7 +264,7 @@ const Form = () => {
               onChange={(e) => setCity(e.target.value)}
             />
             <input
-              type="text"
+              type="number"
               className="form-control"
               placeholder="PostCode/Zip Code"
               required
@@ -254,7 +275,7 @@ const Form = () => {
           <button
             type="button"
             className="btn btn-secondary next"
-            onClick={() => plusSlides(2)}
+            onClick={() => validationCheckAddressDetails()}
           >
             Next
           </button>

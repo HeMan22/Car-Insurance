@@ -1,0 +1,14 @@
+.admin__main {
+  height: 100vh;
+  padding: 4rem;
+}
+.intro__admin {
+  font-size: 1.2rem;
+  font-size: 600;
+}
+.admin__contents {
+  width: 50%;
+}
+button {
+  margin-top: 2rem !important;
+}

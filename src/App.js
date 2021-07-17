@@ -18,7 +18,7 @@ function App() {
           <Route path="/quote" component={Form} />
           <Route path="/admin" component={Admin} />
           {/* <Footer person="Himanshu Tripathi" year="2021" /> */}
-          {/* <Route path="*" component={NotFound} /> */}
+          <Route path="*" component={NotFound} />
         </Switch>
       </Router>
     </React.Fragment>

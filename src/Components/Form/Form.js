@@ -106,7 +106,6 @@ const Form = () => {
   };
 
   var showSlides = (n) => {
-    var i;
     // var slides = document.getElementsByClassName("form-slide");
     if (n > 3) {
       slideIndex = 1;

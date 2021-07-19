@@ -62,8 +62,8 @@ const TagLines = () => {
             <h2>Act Confidently With Our Insurance Policy</h2>
             <h4>We can insure you from any kind of trouble</h4>
 
-            <div className="home_get_quote">
-              <p onClick={() => history.push("/quote")}> Get Quote ...</p>
+            <div className="get_quote">
+              <p onClick={() => history.push("/quote")}> Get Quote </p>
             </div>
           </div>
         </div>
@@ -74,8 +74,8 @@ const TagLines = () => {
             <h2>Keep Your Car Safe With Our Services</h2>
             <h4>We provide wide range of Car Insurance services</h4>
 
-            <div className="home_get_quote">
-              <p onClick={() => history.push("/quote")}> Get Quote ...</p>
+            <div className="get_quote">
+              <p onClick={() => history.push("/quote")}> Get Quote</p>
             </div>
           </div>
         </div>
@@ -86,8 +86,8 @@ const TagLines = () => {
             <h2>Applying For Car Insurance Just Got Easier</h2>
             <h4>You can apply for car insurance online in just few minutes</h4>
 
-            <div className="home_get_quote">
-              <p onClick={() => history.push("/quote")}> Get Quote ...</p>
+            <div className="get_quote">
+              <p onClick={() => history.push("/quote")}> Get Quote</p>
             </div>
           </div>
         </div>

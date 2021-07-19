@@ -14,7 +14,7 @@ html {
   margin-left: 30%;
 }
 
-body,
+/* body,
 p,
 input,
 select,
@@ -23,13 +23,13 @@ button {
   font-family: "Montserrat", sans-serif;
   letter-spacing: -0.2px;
   font-size: 1.2em;
-}
+} */
 
-div,
+/* div,
 p {
   color: #9a9da8 !important;
   text-shadow: 1px 1px 1px #fff !important;
-}
+} */
 
 label {
   display: block;
@@ -79,5 +79,5 @@ label {
 }
 
 .error_message {
-  color: red;
+  color: rgb(87, 2, 2);
 }

@@ -408,7 +408,8 @@ const Form = () => {
 
             <div className="form__submission">
               <button
-              //   onClick={submitForm}
+                className="btn btn-secondary submission"
+                //   onClick={submitForm}
               >
                 Submit
               </button>

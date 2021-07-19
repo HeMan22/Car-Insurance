@@ -9,7 +9,7 @@ const Header = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
           <div
-            className="navbar-brand mb-0 fs-bolder fw-3 h1 app-logo"
+            className="navbar-brand mb-2 fs-bolder fw-3 h1 app-logo"
             onClick={() => history.push("/")}
           >
             <div className="logo-img">

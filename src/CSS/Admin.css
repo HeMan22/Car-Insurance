@@ -2,12 +2,24 @@
   height: 100vh;
   padding: 4rem;
 }
-.intro__admin {
+.intro__admin,
+.section__intro {
   font-size: 1.2rem;
   font-size: 600;
 }
 .admin__contents {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.admin__inputs__section {
+  width: 40%;
+}
+.admin__info__Section {
+  margin-top: -20px;
+  width: 60%;
 }
 button {
   margin-top: 2rem !important;

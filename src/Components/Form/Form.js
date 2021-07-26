@@ -36,7 +36,7 @@ const Form = () => {
     isCommercial: "",
     canUseOutSide: "",
     currentRange: 0,
-    registeredDate: 0,
+    registeredDate: "",
   });
 
   const updateErrorProps = (prop, updatedValue) => {
@@ -57,38 +57,79 @@ const Form = () => {
       ", ",
       salutation
     );
-    let flag = true;
+    let validationOk = true;
 
     if (firstName === "") {
-      flag = false;
+      validationOk = false;
       updateErrorProps("firstName", REQUIRED_FIELD);
     }
     if (lastName === "") {
-      flag = false;
+      validationOk = false;
       updateErrorProps("lastName", REQUIRED_FIELD);
     }
+    if (contact === "") {
+      validationOk = false;
+      updateErrorProps("contact", REQUIRED_FIELD);
+    } else if (contact.length < 10) {
+      validationOk = false;
+      updateErrorProps("contact", "Kindly Enter a proper 10 digit Number");
+    }
 
-    if (flag) {
+    if (email === "") {
+      validationOk = false;
+      updateErrorProps("email", REQUIRED_FIELD);
+    }
+
+    if (validationOk) {
       plusSlides(1);
     }
   };
 
   const validationCheckAddressDetails = () => {
-    let flag = true;
+    let validationOk = true;
     if (address1 === "") {
-      flag = false;
+      validationOk = false;
       updateErrorProps("address1", REQUIRED_FIELD);
     }
     if (pinCode === "") {
-      flag = false;
+      validationOk = false;
       updateErrorProps("pinCode", REQUIRED_FIELD);
     }
     if (city === "") {
-      flag = false;
+      validationOk = false;
       updateErrorProps("city", REQUIRED_FIELD);
     }
-    if (flag) {
+    if (validationOk) {
       plusSlides(2);
+    }
+  };
+
+  const validationVehicleDetails = () => {
+    let validationOk = true;
+
+    if (vehicleType === "" || vehicleType === "Select a Vehicle Type") {
+      validationOk = false;
+      updateErrorProps("vehicleType", VALUE_SELECTION);
+    }
+    if (engineSize === "" || engineSize === "Select Engine Size") {
+      validationOk = false;
+      updateErrorProps("engineSize", VALUE_SELECTION);
+    }
+    if (
+      driversCount === "" ||
+      driversCount === "Additional Drivers using the Car"
+    ) {
+      validationOk = false;
+      updateErrorProps("driversCount", VALUE_SELECTION);
+    }
+
+    if (registeredDate === "") {
+      validationOk = false;
+      updateErrorProps("registeredDate", VALUE_SELECTION);
+    }
+    if (currentRange === 0) {
+      validationOk = false;
+      updateErrorProps("currentRange", VALUE_SELECTION);
     }
   };
 
@@ -206,6 +247,9 @@ const Form = () => {
               value={contact}
               onChange={(e) => setContact(e.target.value)}
             />
+            <span className="error_message" hidden={fieldErrors.contact === ""}>
+              {fieldErrors.contact}
+            </span>
           </div>
           <div className="mb-3">
             <label htmlFor="formGroupExampleInput2" className="form-label">
@@ -219,6 +263,9 @@ const Form = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+            <span className="error_message" hidden={fieldErrors.email === ""}>
+              {fieldErrors.email}
+            </span>
           </div>
           <button
             type="button"
@@ -241,7 +288,14 @@ const Form = () => {
               name={address1}
               onChange={(e) => setAddress1(e.target.value)}
             />
+            <span
+              className="error_message"
+              hidden={fieldErrors.address1 === ""}
+            >
+              {fieldErrors.address1}
+            </span>
           </div>
+          <br />
           <div className="input__card">
             <textarea
               type="text"
@@ -253,7 +307,8 @@ const Form = () => {
               onChange={(e) => setAddress2(e.target.value)}
             />
           </div>
-          <div>
+          <br />
+          <div className="input__card">
             <input
               type="text"
               className="form-control"
@@ -262,6 +317,12 @@ const Form = () => {
               name={city}
               onChange={(e) => setCity(e.target.value)}
             />
+            <span className="error_message" hidden={fieldErrors.city === ""}>
+              {fieldErrors.city}
+            </span>
+          </div>
+          <br />
+          <div className="input__card">
             <input
               type="number"
               className="form-control"
@@ -270,6 +331,9 @@ const Form = () => {
               name={pinCode}
               onChange={(e) => setPinCode(e.target.value)}
             />
+            <span className="error_message" hidden={fieldErrors.pinCode === ""}>
+              {fieldErrors.pinCode}
+            </span>
           </div>
           <button
             type="button"
@@ -296,6 +360,12 @@ const Form = () => {
               <option value="HatchBack">HatchBack</option>
               <option value="Others">Others</option>
             </select>
+            <span
+              className="error_message"
+              hidden={fieldErrors.vehicleType === ""}
+            >
+              {fieldErrors.vehicleType}
+            </span>
             <label>Engine Size</label>
             <select
               className="form-select"
@@ -310,6 +380,12 @@ const Form = () => {
               <option value="3000">3000</option>
               <option value="Others">Others</option>
             </select>
+            <span
+              className="error_message"
+              hidden={fieldErrors.engineSize === ""}
+            >
+              {fieldErrors.engineSize}
+            </span>
             <label>Additional Drivers</label>
             <select
               className="form-select"
@@ -317,12 +393,17 @@ const Form = () => {
               onChange={(e) => setDriversCount(e.target.value)}
             >
               <option>Additional Drivers using the Car</option>
-              <option value="1000">1</option>
-              <option value="1600">2</option>
-              <option value="2000">3</option>
-              <option value="2500">4</option>
-              <option value="3000">&gt;4</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
+            <span
+              className="error_message"
+              hidden={fieldErrors.driversCount === ""}
+            >
+              {fieldErrors.driversCount}
+            </span>
             <label htmlFor="commercialPurpose">
               Will the vehicle be used for commercial purposes?
             </label>
@@ -391,6 +472,12 @@ const Form = () => {
                 value={registeredDate}
                 onChange={(e) => setRegisteredDate(e.target.value)}
               />
+              <span
+                className="error_message"
+                hidden={fieldErrors.registeredDate === ""}
+              >
+                {fieldErrors.registeredDate}
+              </span>
             </div>
             <div className="curr__Range">
               <label>Current Range(0-50000)</label>
@@ -404,12 +491,19 @@ const Form = () => {
                 value={currentRange}
                 onChange={(e) => setCurrentRange(e.target.value)}
               />
+              <span
+                className="error_message"
+                hidden={fieldErrors.currentRange === 0}
+              >
+                {fieldErrors.currentRange}
+              </span>
             </div>
 
             <div className="form__submission">
               <button
+                type="button"
                 className="btn btn-secondary submission"
-                //   onClick={submitForm}
+                onClick={() => validationVehicleDetails()}
               >
                 Submit
               </button>

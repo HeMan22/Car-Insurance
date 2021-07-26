@@ -16,9 +16,9 @@ const Form = () => {
   const [vehicleType, setVehicleType] = useState("");
   const [engineSize, setEngineSize] = useState("");
   const [driversCount, setDriversCount] = useState("");
-  const [isCommercial, setIsCommercial] = useState("No");
-  const [canUseOutSide, setCanUserOutSide] = useState("No");
-  const [currentRange, setCurrentRange] = useState(0);
+  const [commercialUse, setCommercialUse] = useState("No");
+  const [outsideState, setOutsideState] = useState("No");
+  const [currentValue, setCurrentValue] = useState(0);
   const [registeredDate, setRegisteredDate] = useState("");
 
   const VALUE_SELECTION = "*required";
@@ -35,7 +35,7 @@ const Form = () => {
     vehicleType: "",
     engineSize: "",
     driversCount: "",
-    currentRange: 0,
+    currentValue: 0,
     registeredDate: "",
   });
 
@@ -131,7 +131,7 @@ const Form = () => {
       validationOk = false;
       updateErrorProps("registeredDate", VALUE_SELECTION);
     }
-    if (currentRange === 0) {
+    if (currentValue === 0) {
       validationOk = false;
       updateErrorProps("currentRange", VALUE_SELECTION);
     }
@@ -142,22 +142,22 @@ const Form = () => {
 
   const submitForm = async (e) => {
     let driverInfo = {
-      salutation,
+      prefix: salutation,
       firstName,
       lastName,
-      contact,
+      contactNo: contact,
       email,
-      address1,
-      address2,
+      addressLine1: address1,
+      addressLine2: address2,
       city,
-      pinCode,
+      postCode: pinCode,
       vehicleType,
       engineSize,
       driversCount,
-      isCommercial,
-      canUseOutSide,
+      commercialUse,
+      outsideState,
       registeredDate,
-      currentRange,
+      currentValue,
     };
     let response = await saveDriverInfo(driverInfo);
     console.log("save Driver info -> ", response);
@@ -180,15 +180,15 @@ const Form = () => {
     setContact("");
     setPinCode("");
     setCity("");
-    setCanUserOutSide("");
-    setCurrentRange(0);
+    setOutsideState("");
+    setCurrentValue(0);
     setDriversCount("");
     setEngineSize("");
-    setIsCommercial("");
+    setCommercialUse("");
     setRegisteredDate("");
     setVehicleType("");
     setfieldErrors({ ...fieldErrors, [Object.keys(fieldErrors)]: "" });
-    console.log(Object.keys(fieldErrors));
+    // console.log(Object.keys(fieldErrors));
   };
 
   let slide1 = useRef();
@@ -412,7 +412,7 @@ const Form = () => {
               onChange={(e) => setVehicleType(e.target.value)}
             >
               <option>Select a Vehicle Type</option>
-              <option value="Cabriolet ">Cabriolet</option>
+              <option value="Cabriolet">Cabriolet</option>
               <option value="Coupe">Coupe</option>
               <option value="Estate">Estate</option>
               <option value="HatchBack">HatchBack</option>
@@ -471,8 +471,8 @@ const Form = () => {
                 type="radio"
                 name="commercialPurpose"
                 id="commercialPurposeYes"
-                value={isCommercial}
-                onChange={(e) => setIsCommercial(e.target.value)}
+                value={commercialUse}
+                onChange={(e) => setCommercialUse(e.target.value)}
               />
               <label
                 className="form-check-label"
@@ -503,8 +503,8 @@ const Form = () => {
                 type="radio"
                 name="outsideStates"
                 id="outsideStateYes"
-                value={canUseOutSide}
-                onChange={(e) => setCanUserOutSide(e.target.value)}
+                value={outsideState}
+                onChange={(e) => setOutsideState(e.target.value)}
               />
               <label className="form-check-label" htmlFor="outsideStateYes">
                 Yes
@@ -539,21 +539,21 @@ const Form = () => {
             </div>
             <div className="curr_Range">
               <label>Current Range(0-50000)</label>
-              <span> {currentRange}</span>
+              <span> {currentValue}</span>
               <input
                 type="range"
                 className="form-range"
                 step="1000"
                 min="0"
                 max="50000"
-                value={currentRange}
-                onChange={(e) => setCurrentRange(e.target.value)}
+                value={currentValue}
+                onChange={(e) => setCurrentValue(e.target.value)}
               />
               <span
                 className="error_message"
-                hidden={fieldErrors.currentRange === 0}
+                hidden={fieldErrors.currentValue === 0}
               >
-                {fieldErrors.currentRange}
+                {fieldErrors.currentValue}
               </span>
             </div>
 

@@ -55,3 +55,22 @@ export const deleteDriverInfo = async (driverId) => {
     return error.response;
   }
 };
+
+export const updateDriverInfo = async (driverInfo) => {
+  console.log("Update Driver API -> ", driverInfo);
+  try {
+    let updateDriverInfoResponse = await axios.post(
+      `${baseUrl}/update/driver`,
+      driverInfo
+    );
+    const { status, message } = updateDriverInfoResponse.data;
+    if (status === "SUCCESS") {
+      console.log("updateDriverInfoResponse -> ", updateDriverInfoResponse);
+      toast.success(message);
+      return updateDriverInfoResponse.data;
+    }
+  } catch (error) {
+    console.warn("Error Updating Driver -> ", error);
+    toast.error(error.response.message);
+  }
+};

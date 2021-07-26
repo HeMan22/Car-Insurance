@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import "../../CSS/Admin.css";
-import { getDriverInfo, deleteDriverInfo } from "../../Utility/API.js";
+import {
+  getDriverInfo,
+  deleteDriverInfo,
+  updateDriverInfo,
+} from "../../Utility/API.js";
 import { useHistory } from "react-router-dom";
+import UpdateDriverInfo from "../UpdateDriverInfo/UpdateDriverInfo";
 
 const Admin = () => {
   const [action, setAction] = useState("Search");
@@ -48,6 +53,18 @@ const Admin = () => {
     }
   };
 
+  const handleDriverInfoUpdates = async (updatedDriverInfo) => {
+    console.log("Handle Driver updates::", updatedDriverInfo);
+    // api call
+    let response = await updateDriverInfo(updatedDriverInfo);
+    console.log("update response::", response);
+    const { status } = response.data;
+    if (status === "success") {
+      setToggleDriverinfo(!toggleDriverinfo);
+      setDriverId("");
+    }
+  };
+
   return (
     <React.Fragment>
       <div className="admin__main">
@@ -78,9 +95,32 @@ const Admin = () => {
             >
               {action}
             </button>
-
-            <div>{driverInfo.city}</div>
           </div>
+
+          {driverInfo ? (
+            <>
+              <div className="admin__info__section" hidden={toggleDriverinfo}>
+                <UpdateDriverInfo
+                  driverInfo={driverInfo}
+                  manageDriverInfoUpdates={handleDriverInfoUpdates}
+                  errorMessage={errorMessage}
+                />
+              </div>
+            </>
+          ) : (
+            <>
+              <p
+                style={{
+                  color: "red",
+                  fontSize: "1.4rem",
+                  fontWeight: "600",
+                  margin: "50px",
+                }}
+              >
+                {errorMessage}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </React.Fragment>

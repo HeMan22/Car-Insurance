@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../CSS/Admin.css";
-import { getDriverInfo } from "../../Utility/API.js";
+import { getDriverInfo, deleteDriverInfo } from "../../Utility/API.js";
 import { useHistory } from "react-router-dom";
 
 const Admin = () => {
@@ -22,15 +22,25 @@ const Admin = () => {
         response = await getDriverInfo(driverId);
         console.log("Resposne -> ", response);
         setToggleDriverinfo(!toggleDriverinfo);
-        if (response && response.data.message === "SUCCESS") {
-          console.log(response.data.data);
-          setDriverInfo(response.data.data);
+        if (response && response.status === "SUCCESS") {
+          console.log("after if ", response.data);
+          setDriverInfo(response.data);
         } else {
           setDriverInfo(response);
           setErrorMessage(response.message);
         }
         setDriverId("");
-        console.log(response.data.data);
+        console.log(response.data);
+        break;
+
+      case "Delete":
+        response = await deleteDriverInfo(driverId);
+        if (response && response.data.status === "SUCCESS") {
+          console.log(response.data);
+          setErrorMessage(response.message);
+        } else {
+          setErrorMessage(response.message);
+        }
         break;
 
       default:

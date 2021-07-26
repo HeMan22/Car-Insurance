@@ -4,7 +4,7 @@ import { getDriverInfo } from "../../Utility/API.js";
 import { useHistory } from "react-router-dom";
 
 const Admin = () => {
-  const [action, setAction] = useState("search");
+  const [action, setAction] = useState("Search");
   const [driverId, setDriverId] = useState("");
   const [toggleDriverinfo, setToggleDriverinfo] = useState(true);
   const [driverInfo, setDriverInfo] = useState({});
@@ -21,10 +21,20 @@ const Admin = () => {
         console.log("Search API in Work");
         response = await getDriverInfo(driverId);
         console.log("Resposne -> ", response);
+        setToggleDriverinfo(!toggleDriverinfo);
+        if (response && response.data.message === "SUCCESS") {
+          console.log(response.data.data);
+          setDriverInfo(response.data.data);
+        } else {
+          setDriverInfo(response);
+          setErrorMessage(response.message);
+        }
+        setDriverId("");
+        console.log(response.data.data);
         break;
 
       default:
-        break;
+        return "";
     }
   };
 
@@ -53,11 +63,13 @@ const Admin = () => {
             <button
               type="button"
               className="btn btn-secondary next"
-              onClick={handleAdminActions}
+              onClick={() => handleAdminActions(action)}
               disabled={driverId === ""}
             >
               {action}
             </button>
+
+            <div>{driverInfo.city}</div>
           </div>
         </div>
       </div>

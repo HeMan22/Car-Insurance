@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
 import "../../CSS/Form.css";
+import { saveDriverInfo } from "../../Utility/API";
 
 const Form = () => {
   const [salutation, setSalutation] = useState("Mr.");
@@ -33,8 +35,6 @@ const Form = () => {
     vehicleType: "",
     engineSize: "",
     driversCount: "",
-    isCommercial: "",
-    canUseOutSide: "",
     currentRange: 0,
     registeredDate: "",
   });
@@ -58,6 +58,10 @@ const Form = () => {
       salutation
     );
     let validationOk = true;
+
+    if (salutation === "") {
+      validationOk = false;
+    }
 
     if (firstName === "") {
       validationOk = false;
@@ -131,6 +135,60 @@ const Form = () => {
       validationOk = false;
       updateErrorProps("currentRange", VALUE_SELECTION);
     }
+    if (validationOk) {
+      submitForm();
+    }
+  };
+
+  const submitForm = async (e) => {
+    let driverInfo = {
+      salutation,
+      firstName,
+      lastName,
+      contact,
+      email,
+      address1,
+      address2,
+      city,
+      pinCode,
+      vehicleType,
+      engineSize,
+      driversCount,
+      isCommercial,
+      canUseOutSide,
+      registeredDate,
+      currentRange,
+    };
+    let response = await saveDriverInfo(driverInfo);
+    console.log("save Driver info -> ", response);
+    const { status, message } = response.data;
+
+    if (status === "SUCCESS") {
+      toast.success(message);
+      clearFormValues();
+    } else {
+      toast.error(response.data.message);
+      clearFormValues();
+    }
+  };
+  const clearFormValues = () => {
+    setAddress1("");
+    setAddress2("");
+    setSalutation("");
+    setFirstName("");
+    setLastName("");
+    setContact("");
+    setPinCode("");
+    setCity("");
+    setCanUserOutSide("");
+    setCurrentRange(0);
+    setDriversCount("");
+    setEngineSize("");
+    setIsCommercial("");
+    setRegisteredDate("");
+    setVehicleType("");
+    setfieldErrors({ ...fieldErrors, [Object.keys(fieldErrors)]: "" });
+    console.log(Object.keys(fieldErrors));
   };
 
   let slide1 = useRef();
@@ -479,7 +537,7 @@ const Form = () => {
                 {fieldErrors.registeredDate}
               </span>
             </div>
-            <div className="curr__Range">
+            <div className="curr_Range">
               <label>Current Range(0-50000)</label>
               <span> {currentRange}</span>
               <input
@@ -499,7 +557,7 @@ const Form = () => {
               </span>
             </div>
 
-            <div className="form__submission">
+            <div className="form_submission">
               <button
                 type="button"
                 className="btn btn-secondary submission"
@@ -507,6 +565,11 @@ const Form = () => {
               >
                 Submit
               </button>
+              {/* <span> &emsp;</span>
+
+              <button type="button" className="btn btn-secondary submission">
+                Reset
+              </button> */}
             </div>
           </div>
         </section>

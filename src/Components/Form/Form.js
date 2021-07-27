@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "../../CSS/Form.css";
 import { saveDriverInfo } from "../../Utility/API";
+import { useHistory } from "react-router-dom";
 
 const Form = () => {
   const [salutation, setSalutation] = useState("Mr.");
@@ -23,6 +24,7 @@ const Form = () => {
 
   const VALUE_SELECTION = "*required";
   const REQUIRED_FIELD = "can't be empty";
+  let history = useHistory();
 
   const [fieldErrors, setfieldErrors] = useState({
     firstName: "",
@@ -153,7 +155,7 @@ const Form = () => {
       postCode: pinCode,
       vehicleType,
       engineSize,
-      driversCount,
+      additionalDriver: driversCount,
       commercialUse,
       outsideState,
       registeredDate,
@@ -161,11 +163,14 @@ const Form = () => {
     };
     let response = await saveDriverInfo(driverInfo);
     console.log("save Driver info -> ", response);
+    console.log(response.data.driverID);
     const { status, message } = response.data;
 
     if (status === "SUCCESS") {
       toast.success(message);
       clearFormValues();
+      //Route to Quote Display Page
+      history.push(`/quote/:${response.data.driverID}`);
     } else {
       toast.error(response.data.message);
       clearFormValues();
@@ -180,6 +185,7 @@ const Form = () => {
     setContact("");
     setPinCode("");
     setCity("");
+    setEmail("");
     setOutsideState("");
     setCurrentValue(0);
     setDriversCount("");
@@ -187,7 +193,7 @@ const Form = () => {
     setCommercialUse("");
     setRegisteredDate("");
     setVehicleType("");
-    setfieldErrors({ ...fieldErrors, [Object.keys(fieldErrors)]: "" });
+    // setfieldErrors({ ...fieldErrors, [Object.keys(fieldErrors)]: "" });
     // console.log(Object.keys(fieldErrors));
   };
 

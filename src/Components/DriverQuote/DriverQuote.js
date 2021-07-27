@@ -22,7 +22,7 @@ const DriverQuote = () => {
             <span>{prefix + " " + firstName + " " + lastName}</span>
           </p>
           <p>
-            Quotation: &emsp; &emsp;<span>${quotation}</span>
+            Quotation: &emsp; &emsp;<span>${quotation.toFixed(2)}</span>
           </p>
         </div>
       </div>

@@ -18,10 +18,9 @@ function App() {
         <Header />
         <Switch>
           <Route path="/" exact component={TagLines} />
-          <Route path="/quote" component={Form} />
+          <Route exact path="/quote" component={Form} />
           <Route path="/admin" component={Admin} />
-          <Route path="/quote/:myKey" component={DriverQuote} />
-          {/* <Footer person="Himanshu Tripathi" year="2021" /> */}
+          <Route exact path="/quote/success/:myKey" component={DriverQuote} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

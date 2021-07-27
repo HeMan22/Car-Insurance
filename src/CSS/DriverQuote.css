@@ -1,0 +1,37 @@
+.quote__main {
+  height: 40vh;
+  width: 70vw;
+  margin-top: 10vh;
+  margin-left: 10vw;
+  /* border: 2px red solid; */
+  -webkit-box-shadow: 2px 2px 5px #b8b9be, -3px -3px 7px #fff;
+  box-shadow: 5px 5px 5px #8b8c91, -15px -15px 10px rgb(226, 224, 224);
+  /* border-radius: 20px; */
+}
+.p_msg {
+  padding-top: 1vh;
+  margin: 30px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: Gray;
+  border-bottom: 3px solid gray;
+}
+.quote_info {
+  margin-top: 5vh;
+  margin-left: 2.2vw;
+}
+.quote_info > p {
+  font-size: 1.2rem;
+  font-weight: 750;
+  color: gray;
+}
+.quote_info > p > span {
+  font-size: 1.2rem;
+  color: gray;
+}
+
+@media screen and (min-width: 290px) and (max-width: 514px) {
+  .quote__main {
+    height: auto;
+  }
+}

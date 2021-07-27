@@ -164,16 +164,17 @@ const Form = () => {
     let response = await saveDriverInfo(driverInfo);
     console.log("save Driver info -> ", response);
     console.log(response.data.driverID);
-    const { status, message } = response.data;
+    const { data, status, message } = response;
 
     if (status === "SUCCESS") {
       toast.success(message);
-      clearFormValues();
+
       //Route to Quote Display Page
       history.push({
-        pathname: `/quote/${response.data.driverID}`,
-        state: response.data,
+        pathname: `/quote/success/:${data.driverID}`,
+        state: data,
       });
+      clearFormValues();
     } else {
       toast.error(response.data.message);
       clearFormValues();

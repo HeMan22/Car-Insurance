@@ -5,7 +5,7 @@ import {
   deleteDriverInfo,
   updateDriverInfo,
 } from "../../Utility/API.js";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import UpdateDriverInfo from "../UpdateDriverInfo/UpdateDriverInfo";
 
 const Admin = () => {
@@ -15,7 +15,7 @@ const Admin = () => {
   const [driverInfo, setDriverInfo] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
-  let history = useHistory();
+  // let history = useHistory();
 
   const handleAdminActions = async (action) => {
     console.log("handle admin actions ", action, " -> ", driverId);
@@ -97,28 +97,15 @@ const Admin = () => {
             </button>
           </div>
 
-          {driverInfo ? (
+          {driverInfo.email && (
             <>
-              <div className="admin__info__section" hidden={toggleDriverinfo}>
+              <div className="admin__info__section">
                 <UpdateDriverInfo
                   driverInfo={driverInfo}
                   manageDriverInfoUpdates={handleDriverInfoUpdates}
                   errorMessage={errorMessage}
                 />
               </div>
-            </>
-          ) : (
-            <>
-              <p
-                style={{
-                  color: "red",
-                  fontSize: "1.4rem",
-                  fontWeight: "600",
-                  margin: "50px",
-                }}
-              >
-                {errorMessage}
-              </p>
             </>
           )}
         </div>

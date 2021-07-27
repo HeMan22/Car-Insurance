@@ -32,7 +32,7 @@ export const getDriverInfo = async (driverId) => {
     return getDriversInfoResponse.data;
   } catch (error) {
     console.warn("Get Driver Info API Error:", error.response.data.status);
-    toast.success(error.response.data.message);
+    toast.error(error.response.data.message);
     return error.response;
   }
 };

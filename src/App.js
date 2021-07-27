@@ -9,6 +9,7 @@ import NotFound from "./Components/NotFound/NotFound";
 import Admin from "./Components/Admin/Admin";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import DriverQuote from "./Components/DriverQuote/DriverQuote";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" exact component={TagLines} />
           <Route path="/quote" component={Form} />
           <Route path="/admin" component={Admin} />
+          <Route path="/quote/:myKey" component={DriverQuote} />
           {/* <Footer person="Himanshu Tripathi" year="2021" /> */}
           <Route path="*" component={NotFound} />
         </Switch>

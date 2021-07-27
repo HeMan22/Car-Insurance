@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "../../CSS/Form.css";
 import { saveDriverInfo } from "../../Utility/API";
@@ -170,7 +170,10 @@ const Form = () => {
       toast.success(message);
       clearFormValues();
       //Route to Quote Display Page
-      history.push(`/quote/:${response.data.driverID}`);
+      history.push({
+        pathname: `/quote/${response.data.driverID}`,
+        state: response.data,
+      });
     } else {
       toast.error(response.data.message);
       clearFormValues();

@@ -34,7 +34,7 @@ const Admin = () => {
           setDriverInfo(response);
           setErrorMessage(response.message);
         }
-        setDriverId("");
+
         console.log(response.data);
         break;
 

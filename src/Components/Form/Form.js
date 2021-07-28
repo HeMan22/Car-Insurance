@@ -244,7 +244,7 @@ const Form = () => {
           className="name-section form-slide "
           ref={slide1}
         >
-          <span className="section__intro">Personnel Information</span>
+          <span className="mb-4 section_intro">Personnel Information</span>
           <select
             className="form-select"
             aria-label="Prefix"
@@ -345,7 +345,7 @@ const Form = () => {
         </section>
 
         <section className="owner-address form-slide" ref={slide2}>
-          <span className="section__intro">Address Details</span>
+          <span className="section_intro">Address Details</span>
           <div className="input__card">
             <textarea
               type="text"
@@ -413,7 +413,7 @@ const Form = () => {
         </section>
 
         <section className="owner-vehicle form-slide " ref={slide3}>
-          <span className="section__intro">Vehicle Details</span>
+          <span className="section_intro">Vehicle Details</span>
           <div className="vehicle-type">
             <label>Vehicle Type</label>
             <select

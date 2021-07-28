@@ -3,11 +3,12 @@ import { toast } from "react-toastify";
 
 const baseUrl = "http://localhost:8080/api/v1/carInsurance";
 
+// API for Saving the Driver Info
 export const saveDriverInfo = async (driverInfo) => {
   console.log("Save Driver API -> ", driverInfo);
   try {
     let saveDriverInfoResponse = await axios.post(
-      `${baseUrl}/save/driver`,
+      `${baseUrl}/driver`,
       driverInfo
     );
     console.log("Save Driver API Response", saveDriverInfoResponse);
@@ -20,11 +21,12 @@ export const saveDriverInfo = async (driverInfo) => {
   }
 };
 
+// API for fetching the Driver Info based on Driver ID
 export const getDriverInfo = async (driverId) => {
   console.log("Get Driver Info API -> ", driverId);
   try {
     let getDriversInfoResponse = await axios.get(
-      `${baseUrl}/get/driver/${driverId}`
+      `${baseUrl}/driver/${driverId}`
     );
     console.log("Get Driver Info API Response -> ", getDriversInfoResponse);
     toast.success("Driver Info Fetched");
@@ -37,11 +39,12 @@ export const getDriverInfo = async (driverId) => {
   }
 };
 
+// API for deleting the Driver by providing the Driver ID
 export const deleteDriverInfo = async (driverId) => {
   console.log("Delete Driver Info API-> ", driverId);
   try {
     let deleteDriverInfoResponse = await axios.delete(
-      `${baseUrl}/delete/driver/${driverId}`
+      `${baseUrl}/driver/${driverId}`
     );
     console.log(
       "Driver Delete Info API Response -> ",
@@ -56,11 +59,12 @@ export const deleteDriverInfo = async (driverId) => {
   }
 };
 
+// API for Updating the Driver info
 export const updateDriverInfo = async (driverInfo) => {
   console.log("Update Driver API -> ", driverInfo);
   try {
-    let updateDriverInfoResponse = await axios.post(
-      `${baseUrl}/update/driver`,
+    let updateDriverInfoResponse = await axios.put(
+      `${baseUrl}/driver`,
       driverInfo
     );
     const { status, message } = updateDriverInfoResponse.data;

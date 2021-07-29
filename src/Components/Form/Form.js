@@ -76,14 +76,18 @@ const Form = () => {
     if (contact === "") {
       validationOk = false;
       updateErrorProps("contact", REQUIRED_FIELD);
-    } else if (contact.length < 10) {
+    } else if (contact.length < 10 || contact.length > 10) {
       validationOk = false;
       updateErrorProps("contact", "Kindly Enter a proper 10 digit Number");
     }
 
-    if (email === "") {
+    if (
+      !new RegExp(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-za-z]{2,15}/g).test(
+        email
+      )
+    ) {
       validationOk = false;
-      updateErrorProps("email", REQUIRED_FIELD);
+      updateErrorProps("email", "Enter Correct Email Format");
     }
 
     if (validationOk) {

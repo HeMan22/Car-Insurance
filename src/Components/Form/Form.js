@@ -307,13 +307,13 @@ const Form = () => {
             </span>
           </div>
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">
+            <label htmlFor="formGroupContact" className="form-label">
               Contact No.
             </label>
             <input
               type="number"
               className="form-control"
-              id="formGroupExampleInput2"
+              id="formGroupContact"
               placeholder="xxx-xxx-xxxx"
               aria-label="Contact"
               value={contact}
@@ -324,13 +324,13 @@ const Form = () => {
             </span>
           </div>
           <div className="mb-3">
-            <label htmlFor="formGroupExampleInput2" className="form-label">
+            <label htmlFor="formGroupEmail" className="form-label">
               Email
             </label>
             <input
               type="text"
               className="form-control"
-              id="formGroupExampleInput2"
+              id="formGroupEmail"
               placeholder="abc@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}

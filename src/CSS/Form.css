@@ -13,8 +13,8 @@ html {
 }
 
 .form-main {
-  width: 30vw;
-  margin-left: 30%;
+  width: 40vw;
+  margin: auto;
   margin-top: 4vh;
 }
 
@@ -56,7 +56,7 @@ label {
 
 .next,
 .submission {
-  margin-bottom: 10px;
+  margin-bottom: 2vh;
 }
 /* On hover, add a black background color with a little bit see-through */
 .next:hover,
@@ -66,4 +66,20 @@ label {
 
 .error_message {
   color: rgb(129, 14, 14);
+}
+
+@media screen and (min-width: 200px) and (max-width: 700px) {
+  .form-main {
+    width: 70vw;
+    margin: auto;
+    margin-top: 4vh;
+  }
+
+  @media screen and (min-width: 701px) and (max-width: 1000px) {
+    .form-main {
+      width: 70vw;
+      margin: auto;
+      margin-top: 4vh;
+    }
+  }
 }

@@ -242,7 +242,7 @@ const Form = () => {
 
   return (
     <React.Fragment>
-      <div className="form-main">
+      <div className="form-main sm">
         <section
           style={{ display: "block" }}
           className="name-section form-slide "
@@ -264,7 +264,7 @@ const Form = () => {
             <option value="2">Miss</option>
             <option value="3">Mrs.</option>
           </select>
-          <div className="mb-3">
+          <div className="mb-3 sm">
             <label htmlFor="formGroupExampleInput" className="form-label">
               First Name
             </label>

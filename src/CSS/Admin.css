@@ -1,6 +1,9 @@
 .admin__main {
-  height: 100vh;
-  padding: 4rem;
+  /* height: 100vh;
+  padding: 4rem; */
+  width: 40vw;
+  margin: auto;
+  margin-top: 4vh;
 }
 .intro__admin,
 .section__intro {
@@ -14,9 +17,9 @@
   gap: 20px;
 }
 
-.admin__inputs__section {
+/* .admin__inputs__section {
   width: 40%;
-}
+} */
 .admin__info__Section {
   margin-top: -20px;
   width: 60%;

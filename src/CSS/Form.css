@@ -68,18 +68,18 @@ label {
   color: rgb(129, 14, 14);
 }
 
-@media screen and (min-width: 200px) and (max-width: 700px) {
+@media screen and (min-width: 200px) and (max-width: 800px) {
   .form-main {
     width: 70vw;
     margin: auto;
     margin-top: 4vh;
   }
+}
 
-  @media screen and (min-width: 701px) and (max-width: 1000px) {
-    .form-main {
-      width: 70vw;
-      margin: auto;
-      margin-top: 4vh;
-    }
+@media screen and (min-width: 801px) and (max-width: 1100px) {
+  .form-main {
+    width: 50vw;
+    margin: auto;
+    margin-top: 4vh;
   }
 }

@@ -74,7 +74,7 @@ const Admin = () => {
             <input
               type="number"
               placeholder="enter driver's Id"
-              className="form-control"
+              className="form-control mb-4"
               name="driverId"
               onChange={(e) => setDriverId(e.target.value)}
             />
